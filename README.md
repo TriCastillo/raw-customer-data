@@ -53,9 +53,14 @@ To handle outliers and missing values in numeric columns:
 
 ### 🛠️ Cleaned Data Preview (After Cleaning)
 
-```markdown
-![Cleaned Data](images/cleaned_data_preview.png)
-```
+| ID     | First Name | Last Name | Gender | Age  | Birthday   | Items Sold | Email                 | Phone      |
+|--------|------------|-----------|--------|------|------------|------------|------------------------|------------|
+| 573819 | LIAM       | GARCIA    | MALE   | 29.0 | 1990-05-10 | 18.0       | liam.g@example.com     | 9274836192 |
+| 942736 | SOPHIA     | HERNANDEZ | FEMALE | 38.0 | 1985-09-15 | 11.0       | sophia.h@example.com   | 9359017268 |
+| 208457 | NOAH       | LOPEZ     | MALE   | 31.0 | 1992-03-20 | 16.0       | noah.l@example.com     | 9263841509 |
+| 695813 | MIA        | MARTINEZ  | FEMALE | 29.0 | 1988-07-25 | 5.0        | mia.m@example.com      | 9316852740 |
+| 314972 | ETHAN      | GONZALEZ  | MALE   | 29.0 | 1995-01-30 | 75.0       | ethan.g@example.com    | 9367254810 |
+| 867205 | ISABELLA   | PEREZ     | FEMALE | 30.0 | 1993-04-05 | 18.0       | isabella.p@example.com | 9286574903 |
 
 # Results
 
