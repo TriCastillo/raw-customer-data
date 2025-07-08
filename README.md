@@ -43,11 +43,13 @@ To handle outliers and missing values in numeric columns:
 
 ### 🔍 Raw Data Preview (Before Cleaning)
 
-> *Insert a screenshot of the original Excel data or a pandas `.head()` output here*
-
-```markdown
-![Raw Data](images/raw_data_preview.png)
-```
+| ID     | First Name | Last Name | Gender | Age  | Birthday   | Items Sold | Email                 | Phone          |
+|--------|------------|-----------|--------|------|------------|------------|------------------------|----------------|
+| 573819 | LIAM       | Garcia    | Male   | 13.0 | 1990-05-10 | 18.0       | liam.g@example.com     | +63 9274836192 |
+| 942736 | SOPHIA     | Hernandez | Female | 38.0 | 1985-09-15 | 11.0       | sophia.h@example.com   | +63 9359017268 |
+| 208457 | NOAH       | Lopez     | M      | 31.0 | 1992-03-20 | 16.0       | noah.l@example.com     | +63 9263841509 |
+| 695813 | MIA        | Martinez  | Female | NaN  | 1988-07-25 | 5.0        | MIA.M@EXAMPLE.COM      | +63 9316852740 |
+| 314972 | Ethan      | GONZALEZ  | Male   | 29.0 | 1995-01-30 | 20.0       | ETHAN.G@EXAMPLE.COM    | +63 9367254810 |
 
 ### 🛠️ Cleaned Data Preview (After Cleaning)
 
