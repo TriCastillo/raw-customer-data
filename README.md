@@ -1,74 +1,143 @@
-# Scenario Problem
+# Customer Data Cleaning Project
 
-ABC Retail Corporation recently collected raw customer data from various sales channels for the year 2023. This dataset, stored in an Excel file, includes key customer information such as `ID`, `First Name`, `Last Name`, `Gender`, `Age`, `Birthday`, `Items Sold`, `Email`, and `Phone Number`. However, the data is unprocessed and contains inconsistencies, missing values, and formatting issues that make it unreliable for analysis and reporting.
+A Python notebook for cleaning and preprocessing raw customer data from ABC Retail Corporation's 2023 sales channels.
 
-As part of the company's data quality improvement initiative, you are tasked with cleaning this dataset using Python. The goal is to prepare a clean and accurate version of the customer data that can be used for further analysis, such as customer segmentation, sales trend evaluation, and targeted marketing strategies. This involves detecting and handling missing values, correcting data types and formats, removing duplicates, and standardizing entries across all columns.
+---
 
-The success of this data cleaning project will directly impact the accuracy of business decisions and customer insights derived from the dataset.
+## Table of Contents
 
-# Action
+- [Introduction](#introduction)
+- [Scenario and Problem Statement](#scenario-and-problem-statement)
+- [Dataset Description](#dataset-description)
+- [Actions and Approach](#actions-and-approach)
+- [Screenshots and Examples](#screenshots-and-examples)
+- [Technologies Used](#technologies-used)
+- [Project Structure](#project-structure)
+- [Results and Insights](#results-and-insights)
+- [Future Work](#future-work)
+- [Contact Information](#contact-information)
 
-The dataset consists of 23 records about customers. It contains inconsistencies such as unnormalized text, null values, and human errors.
+---
 
-Using the **pandas** library, the Excel file containing the customer data is read into a **pandas DataFrame** to facilitate data manipulation.
+## Introduction
 
-The **`DataFrame.replace()`** function is used to standardize inconsistent entries. It accepts a dictionary-like syntax where each key-value pair maps a value to be replaced with its standardized form.
+This project demonstrates a practical approach to cleaning and standardizing real-world customer data using Python and pandas. The goal is to prepare a reliable dataset for downstream analytics and business intelligence.
 
-**Example:**
+---
 
-```python
-dataframe = dataframe.replace({"AbcD": "abcd", "EFGH": "efdh"})
-```
+## Scenario and Problem Statement
 
-The `Birthday` column is converted to a pandas `datetime` object to ensure consistent formatting and enable time-based operations.
+ABC Retail Corporation collected raw customer data from various sales channels in 2023. The dataset contains inconsistencies, missing values, and formatting issues, making it unreliable for analysis. The objective is to clean and standardize the data to enable accurate customer segmentation, sales trend analysis, and targeted marketing.
 
-Rows with missing values in the `Email` column are filled using the `dataframe['email'].fillna()` function. If the first name and the initial of the last name are available, a placeholder email is generated and normalized to lowercase.
+---
 
-A separate DataFrame is created to calculate the mean while **excluding null values**, to avoid introducing bias into the statistics.
+## Dataset Description
 
-Another DataFrame is created to isolate numeric and float data types using:
+- **Source:** `data/Raw_Data_Customer_2023.xlsx`
+- **Records:** 23 customer entries
+- **Fields:**
+  - `ID`
+  - `First Name`
+  - `Last Name`
+  - `Gender`
+  - `Age`
+  - `Birthday`
+  - `Items Sold`
+  - `Email`
+  - `Phone Number`
+- **Issues:**
+  - Unnormalized text (e.g., inconsistent casing)
+  - Null values
+  - Duplicates
+  - Formatting errors (dates, phone numbers)
+  - Outliers in numeric fields
 
-```python
-dataframe.select_dtypes(include=[type1, type2])
-```
+---
 
-This enables numerical operations, such as scaling, without interference from non-numeric columns.
+## Actions and Approach
 
-To handle outliers and missing values in numeric columns:
+- **Load Data:** Read the Excel file into a pandas DataFrame.
+- **Standardize Text:** Convert names and gender to uppercase, normalize gender values.
+- **Date Formatting:** Convert `Birthday` to pandas datetime.
+- **Email Imputation:** Fill missing emails using a placeholder pattern based on name fields.
+- **Outlier Handling:** Use `RobustScaler` to detect and replace outliers in numeric columns with the mean.
+- **Missing Value Imputation:** Fill missing numeric values with the mean.
+- **Phone Normalization:** Remove country codes and formatting from phone numbers.
+- **Remove Duplicates:** Ensure unique records.
 
-* **Outliers** are excluded.
-* **Null values** are imputed using the **mean** of their respective fields.
+---
 
-# Screenshots & Examples
+## Screenshots and Examples
 
-### 🔍 Raw Data Preview (Before Cleaning)
+### Raw Data Preview (Before Cleaning)
 
-| ID     | First Name | Last Name | Gender | Age  | Birthday   | Items Sold | Email                 | Phone          |
-|--------|------------|-----------|--------|------|------------|------------|------------------------|----------------|
-| 573819 | LIAM       | Garcia    | Male   | 13.0 | 1990-05-10 | 18.0       | liam.g@example.com     | +63 9274836192 |
-| 942736 | SOPHIA     | Hernandez | Female | 38.0 | 1985-09-15 | 11.0       | sophia.h@example.com   | +63 9359017268 |
-| 208457 | NOAH       | Lopez     | M      | 31.0 | 1992-03-20 | 16.0       | noah.l@example.com     | +63 9263841509 |
-| 695813 | MIA        | Martinez  | Female | NaN  | 1988-07-25 | 5.0        | MIA.M@EXAMPLE.COM      | +63 9316852740 |
-| 314972 | Ethan      | GONZALEZ  | Male   | 29.0 | 1995-01-30 | 20.0       | ETHAN.G@EXAMPLE.COM    | +63 9367254810 |
+| ID     | First Name | Last Name | Gender | Age  | Birthday   | Items Sold | Email                | Phone          |
+| ------ | ---------- | --------- | ------ | ---- | ---------- | ---------- | -------------------- | -------------- |
+| 573819 | LIAM       | Garcia    | Male   | 13.0 | 1990-05-10 | 18.0       | liam.g@example.com   | +63 9274836192 |
+| 942736 | SOPHIA     | Hernandez | Female | 38.0 | 1985-09-15 | 11.0       | sophia.h@example.com | +63 9359017268 |
+| 208457 | NOAH       | Lopez     | M      | 31.0 | 1992-03-20 | 16.0       | noah.l@example.com   | +63 9263841509 |
+| 695813 | MIA        | Martinez  | Female | NaN  | 1988-07-25 | 5.0        | MIA.M@EXAMPLE.COM    | +63 9316852740 |
+| 314972 | Ethan      | GONZALEZ  | Male   | 29.0 | 1995-01-30 | 20.0       | ETHAN.G@EXAMPLE.COM  | +63 9367254810 |
+| ...    | ...        | ...       | ...    | ...  | ...        | ...        | ...                  | ...            |
 
-### 🛠️ Cleaned Data Preview (After Cleaning)
+### Cleaned Data Preview (After Cleaning)
 
-| ID     | First Name | Last Name | Gender | Age  | Birthday   | Items Sold | Email                 | Phone      |
-|--------|------------|-----------|--------|------|------------|------------|------------------------|------------|
+| ID     | First Name | Last Name | Gender | Age  | Birthday   | Items Sold | Email                  | Phone      |
+| ------ | ---------- | --------- | ------ | ---- | ---------- | ---------- | ---------------------- | ---------- |
 | 573819 | LIAM       | GARCIA    | MALE   | 29.0 | 1990-05-10 | 18.0       | liam.g@example.com     | 9274836192 |
 | 942736 | SOPHIA     | HERNANDEZ | FEMALE | 38.0 | 1985-09-15 | 11.0       | sophia.h@example.com   | 9359017268 |
 | 208457 | NOAH       | LOPEZ     | MALE   | 31.0 | 1992-03-20 | 16.0       | noah.l@example.com     | 9263841509 |
 | 695813 | MIA        | MARTINEZ  | FEMALE | 29.0 | 1988-07-25 | 5.0        | mia.m@example.com      | 9316852740 |
 | 314972 | ETHAN      | GONZALEZ  | MALE   | 29.0 | 1995-01-30 | 75.0       | ethan.g@example.com    | 9367254810 |
 | 867205 | ISABELLA   | PEREZ     | FEMALE | 30.0 | 1993-04-05 | 18.0       | isabella.p@example.com | 9286574903 |
+| ...    | ...        | ...       | ...    | ...  | ...        | ...        | ...                    | ...        |
 
-# Results
+---
 
-The results produced a clean and complete Excel dataset, following a normalized format and free from inconsistencies.
+## Technologies Used
 
-# Lesson
+- Python 3.x
+- pandas
+- numpy
+- scikit-learn
+- Jupyter Notebook
 
-This project demonstrated how prone real-world data is to anomalies. To prevent null values or improperly formatted entries, systems should implement input validation to enforce data entry rules at the source.
+---
 
-Regarding imputation and outlier handling, if the statistical approach I used (mean imputation) is not ideal in some cases, I'm open to feedback and eager to learn better techniques for future scenarios.
+## Project Structure
 
+**raw-customer-data**
+
+- **data/**
+  - Raw_Data_Customer_2023.xlsx
+- **notebooks/**
+- data_cleaning_customer_2023.ipynb
+
+---
+
+## Results and Insights
+
+- Produced a clean, normalized dataset ready for analytics.
+- Standardized text, dates, and phone numbers.
+- Imputed missing values and handled outliers.
+- Improved data quality for downstream business intelligence.
+
+---
+
+## Future Work
+
+- Add automated unit tests for data validation.
+- Integrate with data visualization tools for reporting.
+- Explore advanced imputation and outlier detection techniques.
+- Automate the pipeline for regular data updates.
+
+---
+
+## Contact Information
+
+For questions or suggestions, please contact:
+
+- **Email:** [reynaldoiii.castillo@gmail.com]
+- **LinkedIn:** Reynaldo III Castillo - [LinkedIn](https://www.linkedin.com/in/reynaldo-iii-castillo-975120303)
+
+---
