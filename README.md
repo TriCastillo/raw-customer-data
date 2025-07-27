@@ -102,7 +102,8 @@ ABC Retail Corporation collected raw customer data from various sales channels i
 - **data/**
   - Raw_Data_Customer_2023.xlsx
 - **notebooks/**
-- data_cleaning_customer_2023.ipynb
+  - data_cleaning_customer_2023.ipynb
+- README.md
 
 ---
 
