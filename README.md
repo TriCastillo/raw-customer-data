@@ -74,10 +74,6 @@ ABC Retail Corporation collected raw customer data from various sales channels i
 | ID     | First Name | Last Name | Gender | Age  | Birthday   | Items Sold | Email                | Phone          |
 | ------ | ---------- | --------- | ------ | ---- | ---------- | ---------- | -------------------- | -------------- |
 | 573819 | LIAM       | Garcia    | Male   | 13.0 | 1990-05-10 | 18.0       | liam.g@example.com   | +63 9274836192 |
-| 942736 | SOPHIA     | Hernandez | Female | 38.0 | 1985-09-15 | 11.0       | sophia.h@example.com | +63 9359017268 |
-| 208457 | NOAH       | Lopez     | M      | 31.0 | 1992-03-20 | 16.0       | noah.l@example.com   | +63 9263841509 |
-| 695813 | MIA        | Martinez  | Female | NaN  | 1988-07-25 | 5.0        | MIA.M@EXAMPLE.COM    | +63 9316852740 |
-| 314972 | Ethan      | GONZALEZ  | Male   | 29.0 | 1995-01-30 | 20.0       | ETHAN.G@EXAMPLE.COM  | +63 9367254810 |
 | ...    | ...        | ...       | ...    | ...  | ...        | ...        | ...                  | ...            |
 
 ### Cleaned Data Preview (After Cleaning)
@@ -85,11 +81,6 @@ ABC Retail Corporation collected raw customer data from various sales channels i
 | ID     | First Name | Last Name | Gender | Age  | Birthday   | Items Sold | Email                  | Phone      |
 | ------ | ---------- | --------- | ------ | ---- | ---------- | ---------- | ---------------------- | ---------- |
 | 573819 | LIAM       | GARCIA    | MALE   | 29.0 | 1990-05-10 | 18.0       | liam.g@example.com     | 9274836192 |
-| 942736 | SOPHIA     | HERNANDEZ | FEMALE | 38.0 | 1985-09-15 | 11.0       | sophia.h@example.com   | 9359017268 |
-| 208457 | NOAH       | LOPEZ     | MALE   | 31.0 | 1992-03-20 | 16.0       | noah.l@example.com     | 9263841509 |
-| 695813 | MIA        | MARTINEZ  | FEMALE | 29.0 | 1988-07-25 | 5.0        | mia.m@example.com      | 9316852740 |
-| 314972 | ETHAN      | GONZALEZ  | MALE   | 29.0 | 1995-01-30 | 75.0       | ethan.g@example.com    | 9367254810 |
-| 867205 | ISABELLA   | PEREZ     | FEMALE | 30.0 | 1993-04-05 | 18.0       | isabella.p@example.com | 9286574903 |
 | ...    | ...        | ...       | ...    | ...  | ...        | ...        | ...                    | ...        |
 
 ---
