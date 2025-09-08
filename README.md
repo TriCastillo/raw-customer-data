@@ -97,8 +97,13 @@ Below are sample visualizations generated during EDA:
 │   ├── raw_transactions_by_month_barplot.png
 │   ├── raw_transactions_by_shopping_mall_barplot.png
 │   └── raw_transactions_by_year_barplot.png
+│   └── retail_sales_dashboard_preview.png
+│   └── select_in_postgresql_database.png
 ├── notebooks/
 │   └── etl_customer_data.ipynb
+├── powerbi/
+│   ├── dashboard_notes.md
+│   └── retail_sales_dashboard.pbix
 ```
 
 ## Results and Insights
