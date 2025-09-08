@@ -173,7 +173,7 @@ Below are sample visualizations generated during EDA:
 
 ## Acknowledgement
 
-- The dataset used in this analysis was gathered from Kaggle. Titled Customer Shopping Dataset - Retail Sales Data and provided by Mehmet Tahir Aslan, it serves as the foundation for exploring customer shopping patterns and retail sales trends.
+- The dataset used in this analysis was gathered from [Kaggle](https://www.kaggle.com/datasets/mehmettahiraslan/customer-shopping-dataset/data). Titled Customer Shopping Dataset - Retail Sales Data and provided by Mehmet Tahir Aslan, it serves as the foundation for exploring customer shopping patterns and retail sales trends.
 - Visualizations and ETL process developed in Jupyter Notebook.
 
 ## Contact Information
