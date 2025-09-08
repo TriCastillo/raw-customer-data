@@ -72,6 +72,10 @@ Below are sample visualizations generated during EDA:
 | --------------------------------------------- |
 | ![](images/select_in_postgresql_database.png) |
 
+| Dashboard Preview in PowerBI                   |
+| ---------------------------------------------- |
+| ![](images/retail_sales_dashboard_preview.png) |
+
 ## Technologies Used
 
 - Python (pandas, matplotlib)
@@ -102,16 +106,64 @@ Below are sample visualizations generated during EDA:
 ├── notebooks/
 │   └── etl_customer_data.ipynb
 ├── powerbi/
-│   ├── dashboard_notes.md
 │   └── retail_sales_dashboard.pbix
 ```
 
 ## Results and Insights
 
-- No duplicate or null values found in the dataset.
-- Age and category distributions reveal customer demographics and popular products.
-- Payment methods and shopping mall locations show customer preferences.
-- Data successfully loaded into PostgreSQL for further analysis.
+### 1. Customer Demographics
+
+- **Gender split**: More female customers than male -> marketing campaigns could target women more, especially in high-value categories like clothing and cosmetics.
+- **Age distribution**: Customers are spread across different age groups, but the **20–60 age group** likely dominates. Younger and middle-aged adults are the primary shoppers.
+
+---
+
+### 2. Sales Trends Over Time
+
+- **By month**: Sales peak in **January** (possibly holiday/clearance shopping) and then gradually drop across the year. Suggests **seasonality** – marketing should push sales campaigns during low months.
+- **By year**: 2021 and 2022 show strong sales, while 2023 has a noticeable drop -> indicates a decline in recent performance, worth investigating (economic conditions, competition, or fewer promotions).
+- **By day of week**: Sales are fairly balanced, but Sun seem higher → customers shop more on restdays, so promotions and staffing should align with that.
+
+---
+
+### 3. Product Category Insights
+
+- **Clothing** dominates in both _quantity_ and _revenue_ → it’s the biggest driver of business.
+- **Shoes and Technology** also contribute significantly in revenue but not as much in quantity → higher-ticket items.
+- **Cosmetics, Food, Toys, Books, Souvenirs** are minor categories → could either be cross-sell opportunities or areas for growth campaigns.
+
+---
+
+### 4. Payment Behavior
+
+- **Cash** is the most common payment method (\~45%), followed by Credit Card (\~35%) and Debit Card (\~20%).
+- High cash dependency might suggest either cultural preference or limited card penetration. Offering **digital wallet/QR pay** could improve customer convenience.
+
+---
+
+### 5. Shopping Mall Performance
+
+- **Mall of Istanbul, Kanyon, Metrocity** are the top-performing malls by invoice count.
+- Other malls (Metropol AVM, Zorlu Center, etc.) lag behind, which may indicate:
+
+  - Lower foot traffic,
+  - Less effective mall marketing, or
+  - Higher competition.
+
+- Expansion efforts or targeted promotions may be more effective in top malls.
+
+---
+
+### Key Business Takeaways
+
+1. **Target female customers aged 20–40** → they are the core demographic.
+2. **Clothing drives revenue** → focus on maintaining and expanding this category, while exploring ways to boost underperforming ones.
+3. **Sales are seasonal** → leverage January spikes, but address mid-year drops with promotions.
+4. **Weekend shopping is stronger** → schedule promotions/events around Fri–Sun.
+5. **Cash dominates payments** → opportunity to push digital payment adoption.
+6. **Top malls bring most revenue** → double down marketing and partnerships with Mall of Istanbul, Kanyon, Metrocity.
+
+---
 
 ## Future Work
 
