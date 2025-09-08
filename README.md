@@ -156,7 +156,7 @@ Below are sample visualizations generated during EDA:
 
 ### Key Business Takeaways
 
-1. **Target female customers aged 20–40** → they are the core demographic.
+1. **Target female customers aged 20–60** → they are the core demographic.
 2. **Clothing drives revenue** → focus on maintaining and expanding this category, while exploring ways to boost underperforming ones.
 3. **Sales are seasonal** → leverage January spikes, but address mid-year drops with promotions.
 4. **Weekend shopping is stronger** → schedule promotions/events around Fri–Sun.
