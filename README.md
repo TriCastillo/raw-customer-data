@@ -1,156 +1,126 @@
-# Customer Data Cleaning Project
+<!-- PROJECT LOGO -->
+<p align="center">
+  <img src="images/retail_sales_dashboard_preview.png" alt="Category Barplot" width="400"/>
+</p>
 
----
+# Customer Shopping Data ETL & Analysis
 
 ## Table of Contents
 
 - [Scenario and Problem Statement](#scenario-and-problem-statement)
 - [Dataset Description](#dataset-description)
 - [Actions and Approach](#actions-and-approach)
-- [Screenshots and Example](#screenshots-and-example)
+- [Screenshots and Examples](#screenshots-and-examples)
 - [Technologies Used](#technologies-used)
 - [Project Structure](#project-structure)
-- [Results and Insight](#results-and-insight)
+- [Results and Insights](#results-and-insights)
 - [Future Work](#future-work)
+- [Acknowledgement](#acknowledgement)
 - [Contact Information](#contact-information)
-
----
 
 ## Scenario and Problem Statement
 
-ABC Retail Corporation collected customer data from multiple sales channels in 2023. The raw dataset contains inconsistencies, missing values, formatting errors, and outliers, making it unreliable for analytics and business intelligence. The objective of this project is to produce an ETL (Extract, Transform, Load) pipeline that cleans, standardizes, and prepares the data for downstream analysis—enabling accurate customer segmentation, sales trend analysis, and targeted marketing.
-
----
+A retail company wants to analyze customer shopping behavior to optimize marketing strategies and improve sales. The goal is to extract, clean, analyze, and store customer transaction data, then visualize key insights and load the results into a PostgreSQL database for further analytics.
 
 ## Dataset Description
 
-- **Source:** `data/Raw_Data_Customer_2023.xlsx`
-- **Records:** 23 customer entries
+- **Source:** `data/customer_shopping_data.csv`
+- **Records:** 99,457 customer entries
 - **Fields:**
-  - `ID`
-  - `First Name`
-  - `Last Name`
-  - `Gender`
-  - `Age`
-  - `Birthday`
-  - `Items Sold`
-  - `Email`
-  - `Phone Number`
-- **Common Issues:**
-  - Inconsistent text casing
-  - Null values
-  - Duplicates
-  - Formatting errors (dates, phone numbers)
-  - Outliers in numeric fields
-
----
+  - `invoice_no`: Transaction identifier
+  - `customer_id`: Unique customer identifier
+  - `gender`: Gender of customer (may require standardization)
+  - `age`: Age of customer
+  - `category`: Product category
+  - `quantity`: Number of items purchased
+  - `price`: Price per item
+  - `payment_method`: Payment method used
+  - `invoice_date`: Date of transaction
+  - `shopping_mall`: Location of purchase
 
 ## Actions and Approach
 
-1. **Load Data:** Read the Excel file into a pandas DataFrame.
-2. **Standardize Text:** Convert names and gender to uppercase, normalize gender values.
-3. **Date Formatting:** Convert `Birthday` to pandas datetime format.
-4. **Email Imputation:** Fill missing emails using a placeholder pattern based on name fields.
-5. **Outlier Handling:** Detect and remove outliers in numeric columns using boxplot and domain knowledge.
-6. **Missing Value Imputation:** Fill missing numeric values with the median.
-7. **Remove Duplicates:** Ensure unique records.
-8. **Export Cleaned Data:** Save the cleaned DataFrame to CSV for further use.
+1. **Data Extraction:** Load CSV data using pandas.
+2. **Exploratory Data Analysis (EDA):**
+   - Check structure, duplicates, and nulls
+   - Visualize distributions (gender, age, category, payment method, dates, shopping mall)
+3. **Data Cleaning:**
+   - Standardize data types for database compatibility
+   - Handle inconsistencies (e.g., gender labels)
+4. **Data Load:**
+   - Store cleaned data in PostgreSQL using psycopg2
+   - Table schema defined in notebook
+   - Integrated in PowerBI and visualized
 
----
+## Screenshots and Examples
 
-## Screenshots and Example
+Below are sample visualizations generated during EDA:
 
-### Raw Data Preview (Before Cleaning)
+| Gender Distribution                             | Age Distribution                               | Category Distribution                |
+| ----------------------------------------------- | ---------------------------------------------- | ------------------------------------ |
+| ![](images/raw_gender_distribution_barplot.png) | ![](images/raw_age_distribution_histogram.png) | ![](images/raw_category_barplot.png) |
 
-| ID     | First Name | Last Name | Gender | Age | Birthday   | Items Sold | Email | Phone          |
-| ------ | ---------- | --------- | ------ | --- | ---------- | ---------- | ----- | -------------- |
-| 236450 | CHARLOTTE  | Reed      | Female | NaN | 1993-05-05 | NaN        | NaN   | +63 9376154820 |
-| ...    | ...        | ...       | ...    | ... | ...        | ...        | ...   | ...            |
+| Payment Method                             | Transactions by Year                             | Transactions by Month                             |
+| ------------------------------------------ | ------------------------------------------------ | ------------------------------------------------- |
+| ![](images/raw_payment_method_barplot.png) | ![](images/raw_transactions_by_year_barplot.png) | ![](images/raw_transactions_by_month_barplot.png) |
 
-### Cleaned Data Preview (After Cleaning)
+| Transactions by Day of Week                             | Transactions by Shopping Mall                             |
+| ------------------------------------------------------- | --------------------------------------------------------- |
+| ![](images/raw_transactions_by_day_of_week_barplot.png) | ![](images/raw_transactions_by_shopping_mall_barplot.png) |
 
-| ID     | First Name | Last Name | Gender | Age | Birthday   | Items Sold | Email              | Phone          |
-| ------ | ---------- | --------- | ------ | --- | ---------- | ---------- | ------------------ | -------------- |
-| 236450 | CHARLOTTE  | REED      | FEMALE | 30  | 1993-05-05 | 12.5       | liam.g@example.com | +63 9376154820 |
-| ...    | ...        | ...       | ...    | ... | ...        | ...        | ...                | ...            |
-
-### Example Graphs and Plots
-
-Below are some of the visualizations used during the data cleaning process:
-
-#### 1. Gender Distribution Bar Plot
-
-Shows the count of customers by gender before standardization.
-
-![Gender Bar Plot](images/raw_gender_distribution_barplot.png)
-
-#### 2. Age Boxplot
-
-Visualizes age distribution and highlights outliers.
-
-![Age Boxplot](images/raw_age_boxplot.png)
-
-#### 3. Items Sold Boxplot
-
-Displays the distribution of items sold and identifies outliers (e.g., the 1000 value).
-
-![Items Sold Boxplot](images/raw_items_sold_boxplot.png)
-
-#### 4. Items Sold Histogram
-
-Shows the frequency distribution of items sold after cleaning and imputation.
-
-![Items Sold Histogram](images/processed_items_sold_histogram.png)
-
----
+| Select Preview in DB                          |
+| --------------------------------------------- |
+| ![](images/select_in_postgresql_database.png) |
 
 ## Technologies Used
 
-- Python 3.x
-- pandas
-- numpy
-- matplotlib
+- Python (pandas, matplotlib)
 - Jupyter Notebook
-
----
+- PostgreSQL
+- psycopg2
+- configparser
 
 ## Project Structure
 
 ```
-raw-customer-data/
+├── config.ini                # Database configuration
+├── README.md                 # Project documentation
+├── requirements.txt          # Python dependencies
 ├── data/
-│   ├── Raw_Data_Customer_2023.xlsx
-│   └── Processed_Customer_2023.xslx
+│   └── customer_shopping_data.csv
+├── images/
+│   ├── raw_age_distribution_histogram.png
+│   ├── raw_category_barplot.png
+│   ├── raw_gender_distribution_barplot.png
+│   ├── raw_payment_method_barplot.png
+│   ├── raw_transactions_by_day_of_week_barplot.png
+│   ├── raw_transactions_by_month_barplot.png
+│   ├── raw_transactions_by_shopping_mall_barplot.png
+│   └── raw_transactions_by_year_barplot.png
 ├── notebooks/
-│   └── etl.ipynb
-└── README.md
+│   └── etl_customer_data.ipynb
 ```
 
----
+## Results and Insights
 
-## Results and Insight
-
-- Produced a clean, normalized dataset ready for analytics
-- Standardized text, dates, and phone numbers
-- Imputed missing values and handled outliers
-- Improved data quality for downstream business intelligence
-
----
+- No duplicate or null values found in the dataset.
+- Age and category distributions reveal customer demographics and popular products.
+- Payment methods and shopping mall locations show customer preferences.
+- Data successfully loaded into PostgreSQL for further analysis.
 
 ## Future Work
 
-- Add automated unit tests for data validation
-- Integrate with data visualization tools for reporting
-- Explore advanced imputation and outlier detection techniques
-- Automate the pipeline for regular data updates
+- Integrate more advanced analytics (e.g., customer segmentation, predictive modeling)
+- Automate ETL pipeline
+- Expand dataset with more features (e.g., loyalty, feedback)
 
----
+## Acknowledgement
+
+- The dataset used in this analysis was gathered from Kaggle. Titled Customer Shopping Dataset - Retail Sales Data and provided by Mehmet Tahir Aslan, it serves as the foundation for exploring customer shopping patterns and retail sales trends.
+- Visualizations and ETL process developed in Jupyter Notebook.
 
 ## Contact Information
 
-For questions or suggestions, please contact:
-
+- **Author:** Reynaldo III Castillo
 - **Email:** reynaldoiii.castillo@gmail.com
-- **LinkedIn:** [Reynaldo III Castillo](https://www.linkedin.com/in/reynaldo-iii-castillo-975120303)
-
----
+- **LinkedIn:** [linkedin.com/in/reynaldo-iii-castillo](https://www.linkedin.com/in/reynaldo-iii-castillo-975120303)
